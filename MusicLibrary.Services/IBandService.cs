@@ -8,5 +8,7 @@ namespace MusicLibrary.Services
         IEnumerable<Band> GetAllBands();
 
         IEnumerable<Band> GetBands(string letter);
+
+        IEnumerable<Band> GetBandsByGenre(string genre);
     }
 }

@@ -1,1 +1,0 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="BandList.ascx.cs" Inherits="Project.Web.UserControls.BandListView" %>

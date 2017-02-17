@@ -3,6 +3,7 @@ using MusicLibrary.Models;
 using MusicLibrary.Data;
 using System.Data.Entity;
 using System.Linq;
+using System;
 
 namespace MusicLibrary.Services
 {
@@ -14,7 +15,8 @@ namespace MusicLibrary.Services
         {
             this.libraryContext = libraryContext;
         }
-        
+
+
         public IEnumerable<Band> GetAllBands()
         {
             return this.libraryContext.Bands.Include(c => c.Country).Include(g => g.Genre);
@@ -24,6 +26,11 @@ namespace MusicLibrary.Services
         {
             return this.libraryContext.Bands.Where(x => x.BandName.Substring(0, 1) == letter).ToList();
 
+        }
+
+        public IEnumerable<Band> GetBandsByGenre(string genre)
+        {
+            return this.libraryContext.Bands.Where(x => x.Genre.GenreName == genre).ToList();
         }
     }
 }

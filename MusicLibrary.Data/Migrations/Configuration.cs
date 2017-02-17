@@ -29,11 +29,11 @@ namespace MusicLibrary.Data.Migrations
             //    );
             //
 
-            return;
-
             IList<Genre> genres = new List<Genre>()
             {
-                new Genre() { Id = Guid.NewGuid(), GenreName = "Metal"}
+                new Genre() { Id = Guid.NewGuid(), GenreName = "Metal" },
+                new Genre() { Id = Guid.NewGuid(), GenreName = "Grindcore" },
+                new Genre() { Id = Guid.NewGuid(), GenreName = "Pop" }
             };
 
             IList<Country> countries = new List<Country>()
@@ -45,9 +45,9 @@ namespace MusicLibrary.Data.Migrations
             IList<Band> bands = new List<Band>()
             {
                 new Band() {Id = Guid.NewGuid(), BandName = "A day to remember", Country = countries[0], Genre = genres[0] },
-                new Band() {Id = Guid.NewGuid(), BandName = "Aerosmith", Country = countries[0], Genre = genres[0] },
+                new Band() {Id = Guid.NewGuid(), BandName = "Aerosmith", Country = countries[0], Genre = genres[1] },
                 new Band() {Id = Guid.NewGuid(), BandName = "Behemoth", Country = countries[1], Genre = genres[0] },
-                new Band() {Id = Guid.NewGuid(), BandName = "Demon Hunter", Country = countries[0], Genre = genres[0] },
+                new Band() {Id = Guid.NewGuid(), BandName = "Demon Hunter", Country = countries[0], Genre = genres[2] },
                 new Band() {Id = Guid.NewGuid(), BandName = "Faith No More", Country = countries[1], Genre = genres[0] },
             };
 

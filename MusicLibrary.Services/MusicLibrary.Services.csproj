@@ -50,7 +50,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BandService.cs" />
+    <Compile Include="GenreService.cs" />
     <Compile Include="IBandService.cs" />
+    <Compile Include="IGenreService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -73,6 +73,7 @@ namespace MusicLibrary.Web.App_Start
                 .To<MusicLibraryContext>().InRequestScope();
 
             kernel.Bind<IBandService>().To<BandService>();
+            kernel.Bind<IGenreService>().To<GenreService>();
         }
     }
 }
