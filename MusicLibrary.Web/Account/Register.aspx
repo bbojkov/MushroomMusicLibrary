@@ -19,6 +19,19 @@
             </div>
         </div>
         <div class="form-group">
+            <asp:Label runat="server" AssociatedControlID="FirstName" CssClass="col-md-2 control-label">FirstName</asp:Label>
+            <div class="col-md-10">
+                <asp:TextBox runat="server" ID="FirstName" TextMode="SingleLine" CssClass="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <asp:Label runat="server" AssociatedControlID="FirstName" CssClass="col-md-2 control-label">FirstName</asp:Label>
+            <div class="col-md-10">
+                <asp:TextBox runat="server" ID="LastName" TextMode="SingleLine" CssClass="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
             <asp:Label runat="server" AssociatedControlID="Password" CssClass="col-md-2 control-label">Password</asp:Label>
             <div class="col-md-10">
                 <asp:TextBox runat="server" ID="Password" TextMode="Password" CssClass="form-control" />

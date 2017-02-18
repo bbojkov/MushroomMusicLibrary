@@ -431,6 +431,8 @@
     <Compile Include="Account\VerifyPhoneNumber.aspx.designer.cs">
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
     </Compile>
+    <Compile Include="App_Start\ApplicationSignInManager.cs" />
+    <Compile Include="App_Start\ApplicationUserManager.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -439,10 +441,14 @@
     <Compile Include="About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
+    <Compile Include="App_Start\DbConfig.cs" />
+    <Compile Include="App_Start\EmailService.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityHelper.cs" />
     <Compile Include="App_Start\NinjectWeb.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\SmsService.cs" />
     <Compile Include="browse\all.aspx.cs">
       <DependentUpon>all.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -506,6 +512,7 @@
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
+    <Compile Include="Startup.cs" />
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -519,10 +526,6 @@
     <Folder Include="UserControls\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MusicLibrary.Auth\MusicLibrary.Auth.csproj">
-      <Project>{0687D435-CE19-4D79-A28A-3E56FBDF8001}</Project>
-      <Name>MusicLibrary.Auth</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MusicLibrary.Data\MusicLibrary.Data.csproj">
       <Project>{049355E6-5343-4FCE-8556-388DC2262DCC}</Project>
       <Name>MusicLibrary.Data</Name>

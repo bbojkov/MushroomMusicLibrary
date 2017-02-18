@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using MusicLibrary.Auth;
 
 namespace MusicLibrary.Web.Account
 {

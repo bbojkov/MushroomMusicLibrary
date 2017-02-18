@@ -1,12 +1,12 @@
+using MusicLibrary.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
-using MusicLibrary.Models;
 
 namespace MusicLibrary.Data.Migrations
 {
-    public sealed class Configuration : DbMigrationsConfiguration<MusicLibraryContext>
+    public sealed class Configuration : DbMigrationsConfiguration<MusicLibrary.Data.MusicLibraryContext>
     {
         public Configuration()
         {
@@ -14,7 +14,7 @@ namespace MusicLibrary.Data.Migrations
             this.AutomaticMigrationDataLossAllowed = true;
         }
 
-        protected override void Seed(MusicLibraryContext context)
+        protected override void Seed(MusicLibrary.Data.MusicLibraryContext context)
         {
             //  This method will be called after migrating to the latest version.
 
@@ -38,7 +38,7 @@ namespace MusicLibrary.Data.Migrations
 
             IList<Country> countries = new List<Country>()
             {
-                new Country() {Id = Guid.NewGuid(), CountryName = "Bulgaria" },
+                new Country() {Id = Guid.NewGuid(), CountryName = "USA" },
                 new Country() {Id = Guid.NewGuid(), CountryName = "Finland" }
             };
 

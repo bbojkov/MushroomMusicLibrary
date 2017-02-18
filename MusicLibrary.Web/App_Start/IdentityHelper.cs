@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web;
 
-namespace MusicLibrary.Auth
+namespace MusicLibrary.Web
 {
     public static class IdentityHelper
     {

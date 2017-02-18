@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicLibrary.Data", "MusicL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicLibrary.Models", "MusicLibrary.Models\MusicLibrary.Models.csproj", "{0768BE4D-54C1-40C6-9687-76C221AC91B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicLibrary.Auth", "MusicLibrary.Auth\MusicLibrary.Auth.csproj", "{0687D435-CE19-4D79-A28A-3E56FBDF8001}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicLibrary.Services", "MusicLibrary.Services\MusicLibrary.Services.csproj", "{96804F75-73C0-4921-8CEA-EC1F02D36259}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicLibrary.MVP", "MusicLibrary.MVP\MusicLibrary.MVP.csproj", "{FBB8F0FA-A2E1-4A02-8EA9-7272E011032B}"
@@ -33,10 +31,6 @@ Global
 		{0768BE4D-54C1-40C6-9687-76C221AC91B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0768BE4D-54C1-40C6-9687-76C221AC91B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0768BE4D-54C1-40C6-9687-76C221AC91B9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0687D435-CE19-4D79-A28A-3E56FBDF8001}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0687D435-CE19-4D79-A28A-3E56FBDF8001}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0687D435-CE19-4D79-A28A-3E56FBDF8001}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0687D435-CE19-4D79-A28A-3E56FBDF8001}.Release|Any CPU.Build.0 = Release|Any CPU
 		{96804F75-73C0-4921-8CEA-EC1F02D36259}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{96804F75-73C0-4921-8CEA-EC1F02D36259}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96804F75-73C0-4921-8CEA-EC1F02D36259}.Release|Any CPU.ActiveCfg = Release|Any CPU

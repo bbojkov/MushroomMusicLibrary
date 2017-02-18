@@ -2,7 +2,6 @@
 using System.Web;
 using System.Web.UI;
 using Microsoft.AspNet.Identity.Owin;
-using MusicLibrary.Auth;
 
 namespace MusicLibrary.Web.Account
 {

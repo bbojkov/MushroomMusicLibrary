@@ -107,15 +107,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationDbContext.cs" />
-    <Compile Include="ApplicationSignInManager.cs" />
-    <Compile Include="ApplicationUser.cs" />
-    <Compile Include="ApplicationUserManager.cs" />
-    <Compile Include="EmailService.cs" />
-    <Compile Include="IdentityHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SmsService.cs" />
-    <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

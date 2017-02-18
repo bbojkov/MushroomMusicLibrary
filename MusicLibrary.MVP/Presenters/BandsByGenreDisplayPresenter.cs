@@ -2,10 +2,6 @@
 using MusicLibrary.MVP.Views;
 using MusicLibrary.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WebFormsMvp;
 
 namespace MusicLibrary.MVP.Presenters
