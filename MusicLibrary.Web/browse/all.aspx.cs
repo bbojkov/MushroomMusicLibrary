@@ -22,5 +22,10 @@ namespace MusicLibrary.Web.browse
 
             return this.Model.Bands;
         }
+
+        protected void AddToFavorites_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

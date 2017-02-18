@@ -12,6 +12,12 @@ namespace MusicLibrary.Data
         {
         }
 
+        public override IDbSet<User> Users
+        {
+            get { return base.Users; }
+            set { base.Users = value; }
+        }
+
         public IDbSet<Band> Bands { get; set; }
 
         public IDbSet<Country> Countries { get; set; }

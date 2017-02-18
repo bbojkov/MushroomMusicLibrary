@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -10,13 +11,19 @@ namespace MusicLibrary.Models
 {
     public class User : IdentityUser
     {
-        // HERE COMES THE CUSTOM FIELDS FOR THE USERS
         private ICollection<Band> likedBands;
 
         public User()
         {
             this.likedBands = new HashSet<Band>();
         }
+        public override string Id
+        {
+            get { return base.Id; }
+            set { base.Id = value; }
+        }
+
+        public override string UserName { get; set; }
 
         public string FirstName { get; set; }
 

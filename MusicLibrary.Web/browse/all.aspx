@@ -17,14 +17,16 @@
                 <h4><%#: Item.BandName %></h4>
                 <itemtemplate>
                     <h4>
-                        <%#: Item.Country.CountryName %>
+                        Country: <%#: Item.Country.CountryName %>
                     </h4>
                 </itemtemplate>
                 <itemtemplate>
-                    <h5>
-                        <%#: Item.Genre.GenreName %>
-                    </h5>
+                    <h4>
+                       Genre: <%#: Item.Genre.GenreName %>
+                    </h4>
                 </itemtemplate>
+                <asp:Button ID="AddToFavorites" runat="server" Text="Add to favorites" OnClick="AddToFavorites_Click" CssClass="btn btn-success"/>
+                <hr />
             </div>
         </ItemTemplate>
     </asp:ListView>

@@ -74,6 +74,7 @@ namespace MusicLibrary.Web.App_Start
 
             kernel.Bind<IBandService>().To<BandService>();
             kernel.Bind<IGenreService>().To<GenreService>();
+            kernel.Bind<IUserService>().To<UserService>();
         }
     }
 }

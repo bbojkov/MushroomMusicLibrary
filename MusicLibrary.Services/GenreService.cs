@@ -16,6 +16,7 @@ namespace MusicLibrary.Services
         {
             this.musicLibraryContext = musicLibraryContext;
         }
+
         public IEnumerable<Genre> GetAllGenres()
         {
             return this.musicLibraryContext.Genres.OrderBy(x => x.GenreName).ToList();
