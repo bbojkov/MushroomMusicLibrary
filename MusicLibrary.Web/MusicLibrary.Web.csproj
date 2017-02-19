@@ -259,6 +259,7 @@
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
     <Content Include="browse\all.aspx" />
+    <Content Include="browse\band.aspx" />
     <Content Include="browse\bandlist.aspx" />
     <Content Include="browse\letter.aspx" />
     <Content Include="browse\genres.aspx" />
@@ -459,6 +460,13 @@
     </Compile>
     <Compile Include="browse\all.aspx.designer.cs">
       <DependentUpon>all.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="browse\band.aspx.cs">
+      <DependentUpon>band.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="browse\band.aspx.designer.cs">
+      <DependentUpon>band.aspx</DependentUpon>
     </Compile>
     <Compile Include="browse\bandlist.aspx.cs">
       <DependentUpon>bandlist.aspx</DependentUpon>
