@@ -26,7 +26,7 @@
                     </h4>
                 </itemtemplate>
                 <p class="navbar-btn">
-                    <asp:HyperLink CssClass="btn btn-default"
+                    <asp:HyperLink CssClass="btn btn-info"
                         ID="HyperLink1"
                         runat="server"
                         NavigateUrl='<%# string.Format("~/browse/band.aspx?id={0}", Item.Id) %>'>

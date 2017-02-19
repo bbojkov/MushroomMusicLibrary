@@ -10,6 +10,6 @@
     </asp:GridView>
 
     <div class="back-link">
-        <a href="/browse/letter">BACK</a>
+        <a href="/browse/letter" class="btn btn-info">BACK</a>
     </div>
 </asp:Content>
