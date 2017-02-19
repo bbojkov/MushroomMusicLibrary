@@ -32,5 +32,11 @@ namespace MusicLibrary.Services
         {
             return this.libraryContext.Bands.Where(x => x.Genre.GenreName == genre).ToList();
         }
+
+        public Band GetById(Guid id)
+        {
+
+            return this.libraryContext.Bands.FirstOrDefault(x => x.Id == id);
+        }
     }
 }

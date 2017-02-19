@@ -14,7 +14,9 @@ namespace MusicLibrary.MVP.Presenters
             : base(view)
         {
             if (bandService == null)
+            {
                 throw new ArgumentNullException(nameof(bandService));
+            }
 
             this.bandService = bandService;
 

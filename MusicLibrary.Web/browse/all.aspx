@@ -25,7 +25,14 @@
                        Genre: <%#: Item.Genre.GenreName %>
                     </h4>
                 </itemtemplate>
-                <asp:Button ID="AddToFavorites" runat="server" Text="Add to favorites" OnClick="AddToFavorites_Click" CssClass="btn btn-success"/>
+                <p class="navbar-btn">
+                    <asp:HyperLink CssClass="btn btn-info"
+                        ID="HyperLink1"
+                        runat="server"
+                        NavigateUrl='<%# string.Format("~/browse/band.aspx?id={0}", Item.Id) %>'>
+                    See Additional Information
+                    </asp:HyperLink>
+                </p>
                 <hr />
             </div>
         </ItemTemplate>

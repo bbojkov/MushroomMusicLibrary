@@ -4,7 +4,13 @@
     <asp:Repeater ID="RepeaterAlphabet" runat="server"
         ItemType="System.Char">
         <ItemTemplate>
-            <asp:LinkButton ID="LinkLetterButton" runat="server" Text="<%#: Item %>" CommandName="<%#: Item %>" OnCommand="LinkLetterButton_Command">
+            <asp:LinkButton
+                ID="LinkLetterButton" 
+                runat="server" 
+                Text="<%#: Item %>" 
+                CommandName="<%#: Item %>" 
+                OnCommand="LinkLetterButton_Command"
+                CssClass="btn btn-info navbar-btn custom-alphabet">
             </asp:LinkButton>
         </ItemTemplate>
         <FooterTemplate>
