@@ -1,22 +1,28 @@
-﻿using System;
+﻿using MusicLibrary.MVP.Models;
+using MusicLibrary.MVP.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WebFormsMvp.Web;
 
 namespace MusicLibrary.Web.add
 {
-    public partial class band : System.Web.UI.Page
+    public partial class band : MvpPage<AddBandModel>, IAddBandView
     {
+        public event EventHandler NeedGenres;
+        public event EventHandler NeedCountries;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             string myScript = "add-band.js";
             Page.ClientScript.RegisterClientScriptInclude("addBandJs", myScript);
 
-
             RangeValidatorYear.MaximumValue = DateTime.Now.Year.ToString();
-            RangeValidatorYear.MinimumValue = DateTime.Now.AddYears(-50).Year.ToString();
+            RangeValidatorYear.MinimumValue = DateTime.Now.AddYears(-100).Year.ToString();
+
 
         }
 
