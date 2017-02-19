@@ -7,4 +7,6 @@
     <br />
     <a href="/browse/genres">Search By Genres</a>
     <br />
+    <a href="/add/band">Add band</a>
+    <br />
 </asp:Content>
