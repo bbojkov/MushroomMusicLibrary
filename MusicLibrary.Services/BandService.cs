@@ -4,16 +4,46 @@ using MusicLibrary.Data;
 using System.Data.Entity;
 using System.Linq;
 using System;
+using MusicLibrary.Models.Factories;
 
 namespace MusicLibrary.Services
 {
     public class BandService : IBandService
     {
         private readonly IMusicLibraryContext libraryContext;
+        private readonly IMusicLibraryBaseContext baseContext;
+        private readonly ICountryService countryService;
+        private readonly IGenreService genreService;
+        private readonly IUserService userService;
+        private readonly IBandFactory bandFactory;
 
-        public BandService(IMusicLibraryContext libraryContext)
+        public BandService(
+            IMusicLibraryContext libraryContext,
+            IMusicLibraryBaseContext baseContext,
+            ICountryService countryService,
+            IGenreService genreService,
+            IUserService userService,
+            IBandFactory bandFactory)
         {
+            this.bandFactory = bandFactory;
+            if (bandFactory == null)
+                throw new ArgumentNullException(nameof(bandFactory));
+            if (userService == null)
+                throw new ArgumentNullException(nameof(userService));
+            if (genreService == null)
+                throw new ArgumentNullException(nameof(genreService));
+            if (countryService == null)
+                throw new ArgumentNullException(nameof(countryService));
+            if (baseContext == null)
+                throw new ArgumentNullException(nameof(baseContext));
+            if (libraryContext == null)
+                throw new ArgumentNullException(nameof(libraryContext));
+
             this.libraryContext = libraryContext;
+            this.baseContext = baseContext;
+            this.userService = userService;
+            this.genreService = genreService;
+            this.countryService = countryService;
         }
 
 
@@ -37,6 +67,57 @@ namespace MusicLibrary.Services
         {
 
             return this.libraryContext.Bands.FirstOrDefault(x => x.Id == id);
+        }
+
+        public bool RegisterNewBand(string bandName, int year, string genreNameOrIdAsString, string countryIdAsString)
+        {
+            bool isSuucessful = false;
+            if (string.IsNullOrEmpty(bandName))
+            {
+                return isSuucessful;
+                throw new ArgumentNullException(nameof(bandName));
+            }
+
+            if (string.IsNullOrEmpty(genreNameOrIdAsString))
+            {
+                return isSuucessful;
+                throw new ArgumentNullException(nameof(genreNameOrIdAsString));
+            }
+
+            if (string.IsNullOrEmpty(countryIdAsString))
+            {
+                return isSuucessful;
+                throw new ArgumentNullException(nameof(countryIdAsString));
+            }
+
+            var newBand = this.bandFactory.CreateBandInstance();
+            newBand.Id = Guid.NewGuid();
+            newBand.BandName = bandName;
+
+            var country = this.countryService.GetCountry(Guid.Parse(countryIdAsString));
+            if (country == null)
+            {
+                return isSuucessful;
+                throw new ArgumentNullException(nameof(country));
+            }
+            newBand.Country = country;
+
+            Genre genre;
+            Guid genreId;
+            if (Guid.TryParse(genreNameOrIdAsString, out genreId))
+            {
+                genre = this.genreService.GetGenre(genreId);
+            }
+            else
+            {
+                genre = this.genreService.CreateGenre(genreNameOrIdAsString);
+            }
+            newBand.Genre = genre;
+
+            this.libraryContext.Bands.Add(newBand);
+            this.baseContext.SaveChanges();
+
+            return isSuucessful = true;
         }
     }
 }

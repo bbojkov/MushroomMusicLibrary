@@ -1,8 +1,8 @@
 ﻿function validateGenreString(sender, args) {
     var genre = args.Value,
-     genreRegEx = '([A-Z])[a-z\- ]+';
+     genreRegEx = '^[{(]?[0-9A-F]{8}[-]?([0-9A-F]{4}[-]?){3}[0-9A-F]{12}[)}]?$/i';
 
-    if (genre.length < 2 && genre.length > 20) {
+    if (genre.length < 2 && genre.length > 30) {
         args.IsValid = false;
         return;
     }

@@ -44,16 +44,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EventArguments\AddBandEventArgs.cs" />
     <Compile Include="EventArguments\BandByGenreEventArgs.cs" />
     <Compile Include="EventArguments\BandListEventArgs.cs" />
     <Compile Include="EventArguments\SingleBandEventArgs.cs" />
+    <Compile Include="Models\AddBandModel.cs" />
     <Compile Include="Models\BandListModel.cs" />
     <Compile Include="Models\BandsByGenreDisplayModel.cs" />
     <Compile Include="Models\SingleBandDisplayModel.cs" />
+    <Compile Include="Presenters\AddBandPresenter.cs" />
     <Compile Include="Presenters\BandListPresenter.cs" />
     <Compile Include="Presenters\BandsByGenreDisplayPresenter.cs" />
     <Compile Include="Presenters\SingleBandDisplayPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\IAddBandView.cs" />
     <Compile Include="Views\IBandListView.cs" />
     <Compile Include="Views\IBandsByGenreDisplayView.cs" />
     <Compile Include="Views\ISingleBandDisplayView.cs" />

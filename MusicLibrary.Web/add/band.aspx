@@ -1,10 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="band.aspx.cs" Inherits="MusicLibrary.Web.add.band" %>
+
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-<div class="form-horizontal">
+    <div class="form-horizontal">
         <fieldset>
             <legend>Register</legend>
+
+            <asp:Label runat="server" ID="SuccessLabel" Visible="false" />
 
             <%--Band/Artist name--%>
             <div class="form-group">
@@ -30,7 +33,7 @@
                         ID="RegularExpressionValidatorBandName"
                         Text="*"
                         ErrorMessage="A valid band/artist name has maximul length of 50 symbols and contains letters or digits or specific characters(-+,.=? )!"
-                        ValidationExpression="[\w\d -+,.=?]{1,4}"
+                        ValidationExpression="[\w\d -+,.=?]{1,50}"
                         ControlToValidate="TextBoxBandName"
                         SetFocusOnError="true"
                         ValidationGroup="AddNewBand">
@@ -91,16 +94,18 @@
                         ID="LabelCountryOfOrigin"
                         Text="Country of origin :"
                         AssociatedControlID="ListBoxCountries"
+                        OnDataBound="OnDataBound"
                         CssClass="control-label" />
                 </div>
                 <div class="col-md-4">
                     <asp:ListBox runat="server"
                         ID="ListBoxCountries"
                         Rows="8"
-                        CssClass="form-control">
-                        <asp:ListItem Text="Select a country" Selected="True" />
-                        <asp:ListItem Text="1" />
-                    </asp:ListBox>
+                        ItemType="Country"
+                        DataTextField="CountryName"
+                        DataValueField="Id"
+                        AppendDataBoundItems="false"
+                        CssClass="form-control"></asp:ListBox>
                     <asp:RequiredFieldValidator runat="server"
                         ID="RequiredFieldCountries"
                         Text="*"
@@ -124,9 +129,13 @@
                         CssClass="control-label" />
                 </div>
                 <div class="col-md-4" runat="server" id="GenreDropDownWrapper">
-                    <asp:DropDownList runat="server" ID="DropDownListGenres" CssClass="form-control">
+                    <asp:DropDownList runat="server"
+                        ID="DropDownListGenres"
+                        DataValueField="Id"
+                        DataTextField="GenreName"
+                        OnDataBound="OnDataBound"
+                        CssClass="form-control">
                         <asp:ListItem Text="Select a genre" Selected="True" />
-                        <asp:ListItem Text="text2" />
                     </asp:DropDownList>
                     <asp:RequiredFieldValidator runat="server"
                         ID="RequiredFieldGenre"
@@ -180,7 +189,7 @@
     <div class="row">
         <div class="col-md-offset-3 col-md-4">
             <asp:Button ID="ButtonSubmit" runat="server" Text="Submit" CssClass="btn btn-success" ValidationGroup="AddNewBand" OnClick="ButtonSubmit_Click" />
-            <asp:Button ID="ButtonCancel" runat="server" Text="Cancel" CausesValidation="false" CssClass="btn btn-danger" />
+            <asp:Button ID="ButtonCancel" runat="server" Text="Cancel" CausesValidation="false" CssClass="btn btn-danger" OnClick="ButtonCancel_Click" />
         </div>
     </div>
 
@@ -188,6 +197,7 @@
         ID="ValidationSummary"
         HeaderText="You received the following errors:"
         ShowMessageBox="true"
-        ShowSummary="false"></asp:ValidationSummary>
+        ShowSummary="false"
+        ValidationGroup="AddNewBand"></asp:ValidationSummary>
 
 </asp:Content>
