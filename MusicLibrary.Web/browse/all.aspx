@@ -11,9 +11,8 @@
                 <asp:PlaceHolder runat="server" ID="itemPlaceHolder"></asp:PlaceHolder>
             </div>
         </GroupTemplate>
-
         <ItemTemplate>
-            <div class="col-md-4">
+            <div class="col-md-4 well table-responsive table-bordered text-center">
                 <h4><%#: Item.BandName %></h4>
                 <itemtemplate>
                     <h4>

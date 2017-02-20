@@ -118,5 +118,13 @@ namespace MusicLibrary.Services
 
             return isSuucessful = true;
         }
+
+        public IEnumerable<Band> SearchBandsByBandName(string searchTerm)
+        {
+            return
+                string.IsNullOrEmpty(searchTerm)
+                ? this.libraryContext.Bands
+                : this.libraryContext.Bands.Where(x => x.BandName.Contains(searchTerm));
+        }
     }
 }
