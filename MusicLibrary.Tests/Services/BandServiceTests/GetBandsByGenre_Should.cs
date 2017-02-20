@@ -1,26 +1,30 @@
 ﻿using NUnit.Framework;
 using Moq;
-using System.Collections.Generic;
-using MusicLibrary.Models;
 using System;
-using MusicLibrary.Data;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using MusicLibrary.Models;
+using MusicLibrary.Data;
 using MusicLibrary.Tests.Mocks;
-using MusicLibrary.Services;
 using System.Data.Entity;
+using MusicLibrary.Services;
 
 namespace MusicLibrary.Tests.Services.BandServiceTests
 {
     [TestFixture]
-    public class GetAllBands_Should
+    public class GetBandsByGenre_Should
     {
         [Test]
-        public void ReturnAllBands_WithIncludedCountryAndGenre()
+        public void ReturnAllBands_WithGivenGenre()
         {
             var context = new Mock<IMusicLibraryContext>();
             var bands = GetBands();
+            string expectedGenre = "Metal";
 
-            var expectedResult = bands.AsQueryable();
+            var expectedResult = bands.Where(x => x.Genre.GenreName == expectedGenre);
+
             var bandsSetMock = QueryableDbSetMock.GetQueryableMockDbSet(bands);
             bandsSetMock.Include("Country");
             bandsSetMock.Include("Genre");
@@ -29,54 +33,20 @@ namespace MusicLibrary.Tests.Services.BandServiceTests
 
             var bandService = new BandService(context.Object);
 
-            var bandResultSet = bandService.GetAllBands();
+            var actualResult = bandService.GetBandsByGenre(expectedGenre);
 
-            CollectionAssert.AreEquivalent(expectedResult, bandResultSet.ToList());
+            CollectionAssert.AreEquivalent(expectedResult, actualResult);
         }
 
         [Test]
-        public void DoesNotReturnsBands_WithoutIncludingCountry()
+        public void DoesNotReturnBands_WithNonExistingGenre()
         {
             var context = new Mock<IMusicLibraryContext>();
             var bands = GetBands();
+            string expectedGenre = "Hop";
 
-            var expectedResult = bands.Where(x => x.Country.CountryName.Contains("Finland")).AsQueryable();
-            var bandsSetMock = QueryableDbSetMock.GetQueryableMockDbSet(bands);
+            var expectedResult = bands.Where(x => x.Genre.GenreName == expectedGenre);
 
-            context.Setup(x => x.Bands).Returns(bandsSetMock);
-
-            var bandService = new BandService(context.Object);
-
-            var bandResultSet = bandService.GetAllBands();
-
-            CollectionAssert.AreNotEquivalent(expectedResult, bandResultSet.ToList());
-        }
-
-        [Test]
-        public void DoesNotReturnsBands_WithoutIncludingGenre()
-        {
-            var context = new Mock<IMusicLibraryContext>();
-            var bands = GetBands();
-
-            var expectedResult = bands.Where(x => x.Genre.GenreName.Contains("Metal")).AsQueryable();
-            var bandsSetMock = QueryableDbSetMock.GetQueryableMockDbSet(bands);
-
-            context.Setup(x => x.Bands).Returns(bandsSetMock);
-
-            var bandService = new BandService(context.Object);
-
-            var bandResultSet = bandService.GetAllBands();
-
-            CollectionAssert.AreNotEquivalent(expectedResult, bandResultSet.ToList());
-        }
-
-        [Test]
-        public void ReturnedBands_AreAllInstancesOfBand()
-        {
-            var context = new Mock<IMusicLibraryContext>();
-            var bands = GetBands();
-
-            var expectedResult = bands.AsQueryable();
             var bandsSetMock = QueryableDbSetMock.GetQueryableMockDbSet(bands);
             bandsSetMock.Include("Country");
             bandsSetMock.Include("Genre");
@@ -85,9 +55,53 @@ namespace MusicLibrary.Tests.Services.BandServiceTests
 
             var bandService = new BandService(context.Object);
 
-            var bandResultSet = bandService.GetAllBands().ToList();
+            var actualResult = bandService.GetBandsByGenre(expectedGenre);
 
-            CollectionAssert.AllItemsAreInstancesOfType(bandResultSet, typeof(Band));
+            CollectionAssert.IsEmpty(actualResult);
+        }
+
+        [Test]
+        public void ReturnTheRightCount_OfFoundBands_WithGivenGenre()
+        {
+            var context = new Mock<IMusicLibraryContext>();
+            var bands = GetBands();
+            string expectedGenre = "Metal";
+
+            var expectedResult = bands.Where(x => x.Genre.GenreName == expectedGenre).ToList();
+
+            var bandsSetMock = QueryableDbSetMock.GetQueryableMockDbSet(bands);
+            bandsSetMock.Include("Country");
+            bandsSetMock.Include("Genre");
+
+            context.Setup(x => x.Bands).Returns(bandsSetMock);
+
+            var bandService = new BandService(context.Object);
+
+            var actualResult = bandService.GetBandsByGenre(expectedGenre).ToList();
+
+            Assert.That(expectedResult.Count == actualResult.Count);
+        }
+
+        [Test]
+        public void ReturnBands_WithInstanceOfBand()
+        {
+            var context = new Mock<IMusicLibraryContext>();
+            var bands = GetBands();
+            string expectedGenre = "Metal";
+
+            var expectedResult = bands.Where(x => x.Genre.GenreName == expectedGenre);
+
+            var bandsSetMock = QueryableDbSetMock.GetQueryableMockDbSet(bands);
+            bandsSetMock.Include("Country");
+            bandsSetMock.Include("Genre");
+
+            context.Setup(x => x.Bands).Returns(bandsSetMock);
+
+            var bandService = new BandService(context.Object);
+
+            var actualResult = bandService.GetBandsByGenre(expectedGenre);
+
+            CollectionAssert.AllItemsAreInstancesOfType(actualResult, typeof(Band));
         }
 
         public IEnumerable<Band> GetBands()
@@ -98,13 +112,6 @@ namespace MusicLibrary.Tests.Services.BandServiceTests
                 {
                     Id = Guid.NewGuid(),
                     BandName = "A day to remember",
-                    Country = new Country() { Id = Guid.NewGuid(), CountryName = "USA" },
-                    Genre = new Genre() { Id = Guid.NewGuid(), GenreName = "Metal" }
-                },
-                new Band()
-                {
-                    Id = Guid.NewGuid(),
-                    BandName = "Killswith Engage",
                     Country = new Country() { Id = Guid.NewGuid(), CountryName = "USA" },
                     Genre = new Genre() { Id = Guid.NewGuid(), GenreName = "Metal" }
                 },
@@ -127,5 +134,4 @@ namespace MusicLibrary.Tests.Services.BandServiceTests
             return bands;
         }
     }
-
 }

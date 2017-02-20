@@ -37,6 +37,28 @@ namespace MusicLibrary.Tests.GenreServiceTests
         }
 
         [Test]
+        public void ReturnTheRightCount_OfGenres()
+        {
+            // Arrange
+            var context = new Mock<IMusicLibraryContext>();
+            var genres = GetGenres();
+
+            var expectedResult = genres.OrderBy(x => x.GenreName).AsQueryable();
+
+            var genresSetMock = QueryableDbSetMock.GetQueryableMockDbSet(genres);
+
+            context.Setup(x => x.Genres).Returns(genresSetMock);
+
+            GenreService genreService = new GenreService(context.Object);
+
+            // Act
+            var actualResult = genreService.GetAllGenres();
+
+            // Assert
+            Assert.That(expectedResult.ToList().Count() == actualResult.Count());
+        }
+
+        [Test]
         public void ReturnsACollection_WithInstancesOfGenre()
         {
             // Arrange
