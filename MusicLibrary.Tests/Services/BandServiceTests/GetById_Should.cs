@@ -5,6 +5,7 @@ using MusicLibrary.Data;
 using MusicLibrary.Models;
 using System.Data.Entity;
 using MusicLibrary.Services;
+using MusicLibrary.Models.Factories;
 
 namespace MusicLibrary.Tests.Services.BandServiceTests
 {
@@ -14,16 +15,27 @@ namespace MusicLibrary.Tests.Services.BandServiceTests
         [Test]
         public void ReturnBand_WhenIdIsValid()
         {
-            var context = new Mock<IMusicLibraryContext>();
+            var contextMock = new Mock<IMusicLibraryContext>();
+            var contextBaseMock = new Mock<IMusicLibraryBaseContext>();
+            var countryServiceMock = new Mock<ICountryService>();
+            var genreServiceMock = new Mock<IGenreService>();
+            var userServiceMock = new Mock<IUserService>();
+            var bandFactoryMock = new Mock<IBandFactory>();
             var bandMock = new Mock<IDbSet<Band>>();
 
-            context.Setup(x => x.Bands).Returns(bandMock.Object);
+            contextMock.Setup(x => x.Bands).Returns(bandMock.Object);
 
             Guid bandId = Guid.NewGuid();
             Band expectedBand = new Band() { Id = bandId };
             bandMock.Setup(x => x.Find(bandId)).Returns(expectedBand);
 
-            var bandService = new BandService(context.Object);
+            var bandService = new BandService(
+                contextMock.Object,
+                contextBaseMock.Object,
+                countryServiceMock.Object,
+                genreServiceMock.Object,
+                userServiceMock.Object,
+                bandFactoryMock.Object);
 
             Band actualBand = bandService.GetById(bandId);
 
@@ -33,16 +45,27 @@ namespace MusicLibrary.Tests.Services.BandServiceTests
         [Test]
         public void Returns_AnInstanceOf_Band()
         {
-            var context = new Mock<IMusicLibraryContext>();
+            var contextMock = new Mock<IMusicLibraryContext>();
+            var contextBaseMock = new Mock<IMusicLibraryBaseContext>();
+            var countryServiceMock = new Mock<ICountryService>();
+            var genreServiceMock = new Mock<IGenreService>();
+            var userServiceMock = new Mock<IUserService>();
+            var bandFactoryMock = new Mock<IBandFactory>();
             var bandMock = new Mock<IDbSet<Band>>();
 
-            context.Setup(x => x.Bands).Returns(bandMock.Object);
+            contextMock.Setup(x => x.Bands).Returns(bandMock.Object);
 
             Guid bandId = Guid.NewGuid();
             Band expectedBand = new Band() { Id = bandId };
             bandMock.Setup(x => x.Find(bandId)).Returns(expectedBand);
 
-            var bandService = new BandService(context.Object);
+            var bandService = new BandService(
+                contextMock.Object,
+                contextBaseMock.Object,
+                countryServiceMock.Object,
+                genreServiceMock.Object,
+                userServiceMock.Object,
+                bandFactoryMock.Object);
 
             Band actualBand = bandService.GetById(bandId);
 

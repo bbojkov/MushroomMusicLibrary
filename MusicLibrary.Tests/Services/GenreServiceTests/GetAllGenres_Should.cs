@@ -45,6 +45,8 @@ namespace MusicLibrary.Tests.GenreServiceTests
         {
             // Arrange
             var context = new Mock<IMusicLibraryContext>();
+            var mockedBaseContext = new Mock<IMusicLibraryBaseContext>();
+            var mockedGenreFactory = new Mock<IGenreFactory>();
             var genres = GetGenres();
 
             var expectedResult = genres.OrderBy(x => x.GenreName).AsQueryable();
@@ -53,7 +55,7 @@ namespace MusicLibrary.Tests.GenreServiceTests
 
             context.Setup(x => x.Genres).Returns(genresSetMock);
 
-            GenreService genreService = new GenreService(context.Object);
+            GenreService genreService = new GenreService(context.Object, mockedBaseContext.Object, mockedGenreFactory.Object);
 
             // Act
             var actualResult = genreService.GetAllGenres();

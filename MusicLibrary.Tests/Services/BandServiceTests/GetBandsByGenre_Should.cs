@@ -10,6 +10,7 @@ using MusicLibrary.Data;
 using MusicLibrary.Tests.Mocks;
 using System.Data.Entity;
 using MusicLibrary.Services;
+using MusicLibrary.Models.Factories;
 
 namespace MusicLibrary.Tests.Services.BandServiceTests
 {
@@ -19,7 +20,12 @@ namespace MusicLibrary.Tests.Services.BandServiceTests
         [Test]
         public void ReturnAllBands_WithGivenGenre()
         {
-            var context = new Mock<IMusicLibraryContext>();
+            var contextMock = new Mock<IMusicLibraryContext>();
+            var contextBaseMock = new Mock<IMusicLibraryBaseContext>();
+            var countryServiceMock = new Mock<ICountryService>();
+            var genreServiceMock = new Mock<IGenreService>();
+            var userServiceMock = new Mock<IUserService>();
+            var bandFactoryMock = new Mock<IBandFactory>();
             var bands = GetBands();
             string expectedGenre = "Metal";
 
@@ -29,9 +35,15 @@ namespace MusicLibrary.Tests.Services.BandServiceTests
             bandsSetMock.Include("Country");
             bandsSetMock.Include("Genre");
 
-            context.Setup(x => x.Bands).Returns(bandsSetMock);
+            contextMock.Setup(x => x.Bands).Returns(bandsSetMock);
 
-            var bandService = new BandService(context.Object);
+            var bandService = new BandService(
+                contextMock.Object,
+                contextBaseMock.Object,
+                countryServiceMock.Object,
+                genreServiceMock.Object,
+                userServiceMock.Object,
+                bandFactoryMock.Object);
 
             var actualResult = bandService.GetBandsByGenre(expectedGenre);
 
@@ -41,7 +53,12 @@ namespace MusicLibrary.Tests.Services.BandServiceTests
         [Test]
         public void DoesNotReturnBands_WithNonExistingGenre()
         {
-            var context = new Mock<IMusicLibraryContext>();
+            var contextMock = new Mock<IMusicLibraryContext>();
+            var contextBaseMock = new Mock<IMusicLibraryBaseContext>();
+            var countryServiceMock = new Mock<ICountryService>();
+            var genreServiceMock = new Mock<IGenreService>();
+            var userServiceMock = new Mock<IUserService>();
+            var bandFactoryMock = new Mock<IBandFactory>();
             var bands = GetBands();
             string expectedGenre = "Hop";
 
@@ -51,9 +68,15 @@ namespace MusicLibrary.Tests.Services.BandServiceTests
             bandsSetMock.Include("Country");
             bandsSetMock.Include("Genre");
 
-            context.Setup(x => x.Bands).Returns(bandsSetMock);
+            contextMock.Setup(x => x.Bands).Returns(bandsSetMock);
 
-            var bandService = new BandService(context.Object);
+            var bandService = new BandService(
+                contextMock.Object,
+                contextBaseMock.Object,
+                countryServiceMock.Object,
+                genreServiceMock.Object,
+                userServiceMock.Object,
+                bandFactoryMock.Object);
 
             var actualResult = bandService.GetBandsByGenre(expectedGenre);
 
@@ -63,7 +86,12 @@ namespace MusicLibrary.Tests.Services.BandServiceTests
         [Test]
         public void ReturnTheRightCount_OfFoundBands_WithGivenGenre()
         {
-            var context = new Mock<IMusicLibraryContext>();
+            var contextMock = new Mock<IMusicLibraryContext>();
+            var contextBaseMock = new Mock<IMusicLibraryBaseContext>();
+            var countryServiceMock = new Mock<ICountryService>();
+            var genreServiceMock = new Mock<IGenreService>();
+            var userServiceMock = new Mock<IUserService>();
+            var bandFactoryMock = new Mock<IBandFactory>();
             var bands = GetBands();
             string expectedGenre = "Metal";
 
@@ -73,9 +101,15 @@ namespace MusicLibrary.Tests.Services.BandServiceTests
             bandsSetMock.Include("Country");
             bandsSetMock.Include("Genre");
 
-            context.Setup(x => x.Bands).Returns(bandsSetMock);
+            contextMock.Setup(x => x.Bands).Returns(bandsSetMock);
 
-            var bandService = new BandService(context.Object);
+            var bandService = new BandService(
+                contextMock.Object,
+                contextBaseMock.Object,
+                countryServiceMock.Object,
+                genreServiceMock.Object,
+                userServiceMock.Object,
+                bandFactoryMock.Object);
 
             var actualResult = bandService.GetBandsByGenre(expectedGenre).ToList();
 
@@ -85,7 +119,12 @@ namespace MusicLibrary.Tests.Services.BandServiceTests
         [Test]
         public void ReturnBands_WithInstanceOfBand()
         {
-            var context = new Mock<IMusicLibraryContext>();
+            var contextMock = new Mock<IMusicLibraryContext>();
+            var contextBaseMock = new Mock<IMusicLibraryBaseContext>();
+            var countryServiceMock = new Mock<ICountryService>();
+            var genreServiceMock = new Mock<IGenreService>();
+            var userServiceMock = new Mock<IUserService>();
+            var bandFactoryMock = new Mock<IBandFactory>();
             var bands = GetBands();
             string expectedGenre = "Metal";
 
@@ -95,9 +134,15 @@ namespace MusicLibrary.Tests.Services.BandServiceTests
             bandsSetMock.Include("Country");
             bandsSetMock.Include("Genre");
 
-            context.Setup(x => x.Bands).Returns(bandsSetMock);
+            contextMock.Setup(x => x.Bands).Returns(bandsSetMock);
 
-            var bandService = new BandService(context.Object);
+            var bandService = new BandService(
+                contextMock.Object,
+                contextBaseMock.Object,
+                countryServiceMock.Object,
+                genreServiceMock.Object,
+                userServiceMock.Object,
+                bandFactoryMock.Object);
 
             var actualResult = bandService.GetBandsByGenre(expectedGenre);
 

@@ -65,8 +65,7 @@ namespace MusicLibrary.Services
 
         public Band GetById(Guid id)
         {
-
-            return this.libraryContext.Bands.FirstOrDefault(x => x.Id == id);
+            return this.libraryContext.Bands.Find(id);
         }
 
         public bool RegisterNewBand(string bandName, int year, string genreNameOrIdAsString, string countryIdAsString)

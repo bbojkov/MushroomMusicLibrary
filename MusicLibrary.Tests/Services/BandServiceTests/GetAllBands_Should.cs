@@ -8,6 +8,7 @@ using System.Linq;
 using MusicLibrary.Tests.Mocks;
 using MusicLibrary.Services;
 using System.Data.Entity;
+using MusicLibrary.Models.Factories;
 
 namespace MusicLibrary.Tests.Services.BandServiceTests
 {
@@ -17,7 +18,12 @@ namespace MusicLibrary.Tests.Services.BandServiceTests
         [Test]
         public void ReturnAllBands_WithIncludedCountryAndGenre()
         {
-            var context = new Mock<IMusicLibraryContext>();
+            var contextMock = new Mock<IMusicLibraryContext>();
+            var contextBaseMock = new Mock<IMusicLibraryBaseContext>();
+            var countryServiceMock = new Mock<ICountryService>();
+            var genreServiceMock = new Mock<IGenreService>();
+            var userServiceMock = new Mock<IUserService>();
+            var bandFactoryMock = new Mock<IBandFactory>();
             var bands = GetBands();
 
             var expectedResult = bands.AsQueryable();
@@ -25,9 +31,15 @@ namespace MusicLibrary.Tests.Services.BandServiceTests
             bandsSetMock.Include("Country");
             bandsSetMock.Include("Genre");
 
-            context.Setup(x => x.Bands).Returns(bandsSetMock);
+            contextMock.Setup(x => x.Bands).Returns(bandsSetMock);
 
-            var bandService = new BandService(context.Object);
+            var bandService = new BandService(
+                contextMock.Object, 
+                contextBaseMock.Object, 
+                countryServiceMock.Object,
+                genreServiceMock.Object, 
+                userServiceMock.Object, 
+                bandFactoryMock.Object);
 
             var bandResultSet = bandService.GetAllBands();
 
@@ -37,15 +49,26 @@ namespace MusicLibrary.Tests.Services.BandServiceTests
         [Test]
         public void DoesNotReturnsBands_WithoutIncludingCountry()
         {
-            var context = new Mock<IMusicLibraryContext>();
+            var contextMock = new Mock<IMusicLibraryContext>();
+            var contextBaseMock = new Mock<IMusicLibraryBaseContext>();
+            var countryServiceMock = new Mock<ICountryService>();
+            var genreServiceMock = new Mock<IGenreService>();
+            var userServiceMock = new Mock<IUserService>();
+            var bandFactoryMock = new Mock<IBandFactory>();
             var bands = GetBands();
 
             var expectedResult = bands.Where(x => x.Country.CountryName.Contains("Finland")).AsQueryable();
             var bandsSetMock = QueryableDbSetMock.GetQueryableMockDbSet(bands);
 
-            context.Setup(x => x.Bands).Returns(bandsSetMock);
+            contextMock.Setup(x => x.Bands).Returns(bandsSetMock);
 
-            var bandService = new BandService(context.Object);
+            var bandService = new BandService(
+                       contextMock.Object,
+                       contextBaseMock.Object,
+                       countryServiceMock.Object,
+                       genreServiceMock.Object,
+                       userServiceMock.Object,
+                       bandFactoryMock.Object);
 
             var bandResultSet = bandService.GetAllBands();
 
@@ -55,15 +78,26 @@ namespace MusicLibrary.Tests.Services.BandServiceTests
         [Test]
         public void DoesNotReturnsBands_WithoutIncludingGenre()
         {
-            var context = new Mock<IMusicLibraryContext>();
+            var contextMock = new Mock<IMusicLibraryContext>();
+            var contextBaseMock = new Mock<IMusicLibraryBaseContext>();
+            var countryServiceMock = new Mock<ICountryService>();
+            var genreServiceMock = new Mock<IGenreService>();
+            var userServiceMock = new Mock<IUserService>();
+            var bandFactoryMock = new Mock<IBandFactory>();
             var bands = GetBands();
 
             var expectedResult = bands.Where(x => x.Genre.GenreName.Contains("Metal")).AsQueryable();
             var bandsSetMock = QueryableDbSetMock.GetQueryableMockDbSet(bands);
 
-            context.Setup(x => x.Bands).Returns(bandsSetMock);
+            contextMock.Setup(x => x.Bands).Returns(bandsSetMock);
 
-            var bandService = new BandService(context.Object);
+            var bandService = new BandService(
+                       contextMock.Object,
+                       contextBaseMock.Object,
+                       countryServiceMock.Object,
+                       genreServiceMock.Object,
+                       userServiceMock.Object,
+                       bandFactoryMock.Object);
 
             var bandResultSet = bandService.GetAllBands();
 
@@ -73,7 +107,12 @@ namespace MusicLibrary.Tests.Services.BandServiceTests
         [Test]
         public void ReturnedBands_AreAllInstancesOfBand()
         {
-            var context = new Mock<IMusicLibraryContext>();
+            var contextMock = new Mock<IMusicLibraryContext>();
+            var contextBaseMock = new Mock<IMusicLibraryBaseContext>();
+            var countryServiceMock = new Mock<ICountryService>();
+            var genreServiceMock = new Mock<IGenreService>();
+            var userServiceMock = new Mock<IUserService>();
+            var bandFactoryMock = new Mock<IBandFactory>();
             var bands = GetBands();
 
             var expectedResult = bands.AsQueryable();
@@ -81,9 +120,15 @@ namespace MusicLibrary.Tests.Services.BandServiceTests
             bandsSetMock.Include("Country");
             bandsSetMock.Include("Genre");
 
-            context.Setup(x => x.Bands).Returns(bandsSetMock);
+            contextMock.Setup(x => x.Bands).Returns(bandsSetMock);
 
-            var bandService = new BandService(context.Object);
+            var bandService = new BandService(
+                       contextMock.Object,
+                       contextBaseMock.Object,
+                       countryServiceMock.Object,
+                       genreServiceMock.Object,
+                       userServiceMock.Object,
+                       bandFactoryMock.Object);
 
             var bandResultSet = bandService.GetAllBands().ToList();
 
