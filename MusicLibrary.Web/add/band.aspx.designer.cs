@@ -13,6 +13,15 @@ namespace MusicLibrary.Web.add {
     public partial class band {
         
         /// <summary>
+        /// SuccessLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label SuccessLabel;
+        
+        /// <summary>
         /// LabelBandName control.
         /// </summary>
         /// <remarks>

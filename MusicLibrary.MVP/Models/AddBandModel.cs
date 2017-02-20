@@ -10,5 +10,9 @@
     public class AddBandModel
     {
         public IEnumerable<Genre> Genres { get; set; }
+
+        public IEnumerable<Country> Countries { get; set; }
+
+        public bool IsSuccessful { get; set; }
     }
 }

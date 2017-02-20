@@ -44,6 +44,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EventArguments\AddBandEventArgs.cs" />
     <Compile Include="EventArguments\BandByGenreEventArgs.cs" />
     <Compile Include="EventArguments\BandListEventArgs.cs" />
     <Compile Include="EventArguments\SingleBandEventArgs.cs" />

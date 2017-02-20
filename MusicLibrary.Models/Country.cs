@@ -1,9 +1,10 @@
-﻿using System;
+﻿using MusicLibrary.Models.Contracts;
+using System;
 using System.Collections.Generic;
 
 namespace MusicLibrary.Models
 {
-    public class Country
+    public class Country : ICountry
     {
         public Country()
         {

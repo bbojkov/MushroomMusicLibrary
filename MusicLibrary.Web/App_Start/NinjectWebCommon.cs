@@ -5,10 +5,15 @@ using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
 using Ninject;
 using Ninject.Web.Common;
+using Ninject.Extensions.Conventions;
 using MusicLibrary.Data;
 using MusicLibrary.Services;
 using MusicLibrary.Web.NinjectBindingsModules;
 using WebFormsMvp.Binder;
+using MusicLibrary.Models.Factories;
+using MusicLibrary.Models.Contracts;
+using MusicLibrary.Models;
+using Ninject.Extensions.Factory;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(MusicLibrary.Web.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(MusicLibrary.Web.App_Start.NinjectWebCommon), "Stop")]
@@ -72,9 +77,21 @@ namespace MusicLibrary.Web.App_Start
             kernel.Bind(typeof(IMusicLibraryContext), typeof(IMusicLibraryBaseContext))
                 .To<MusicLibraryContext>().InRequestScope();
 
-            kernel.Bind<IBandService>().To<BandService>();
-            kernel.Bind<IGenreService>().To<GenreService>();
-            kernel.Bind<IUserService>().To<UserService>();
+            //kernel.Bind<IBandService>().To<BandService>();
+            //kernel.Bind<IGenreService>().To<GenreService>();
+            //kernel.Bind<IUserService>().To<UserService>();
+
+            kernel.Bind(r => r
+            .FromAssemblyContaining<IBandService>()
+            .SelectAllClasses()
+            .BindAllInterfaces());
+
+            kernel.Bind(x => x
+            .FromAssemblyContaining<IBandFactory>()
+            .SelectAllInterfaces()
+            .EndingWith("Factory")
+            .BindToFactory());
+
         }
     }
 }

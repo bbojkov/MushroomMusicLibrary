@@ -1,4 +1,5 @@
 ﻿using MusicLibrary.MVP.Models;
+using MusicLibrary.MVP.Presenters;
 using MusicLibrary.MVP.Views;
 using System;
 using System.Collections.Generic;
@@ -6,14 +7,19 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WebFormsMvp;
 using WebFormsMvp.Web;
+using MusicLibrary.MVP.EventArguments;
+using System.Text.RegularExpressions;
 
 namespace MusicLibrary.Web.add
 {
+    [PresenterBinding(typeof(AddBandPresenter))]
     public partial class band : MvpPage<AddBandModel>, IAddBandView
     {
         public event EventHandler NeedGenres;
         public event EventHandler NeedCountries;
+        public event EventHandler<AddBandEventArgs> RegisterBand;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -23,7 +29,16 @@ namespace MusicLibrary.Web.add
             RangeValidatorYear.MaximumValue = DateTime.Now.Year.ToString();
             RangeValidatorYear.MinimumValue = DateTime.Now.AddYears(-100).Year.ToString();
 
+            if (!IsPostBack)
+            {
+                this.NeedCountries(null, null);
+                this.NeedGenres(null, null);
 
+                this.ListBoxCountries.DataSource = this.Model.Countries;
+                this.ListBoxCountries.DataBind();
+                this.DropDownListGenres.DataSource = this.Model.Genres;
+                this.DropDownListGenres.DataBind();
+            }
         }
 
         protected void ButtonSubmit_Click(object sender, EventArgs e)
@@ -33,11 +48,24 @@ namespace MusicLibrary.Web.add
             {
                 var bandName = this.TextBoxBandName.Text;
                 var yearOfFormation = int.Parse(this.TextBoxYear.Text);
-                var countryOfOrigin = this.ListBoxCountries.SelectedValue;
-                var genre = this.DropDownListGenres.SelectedIndex != -1 ?
+                var countryOfOriginId = this.ListBoxCountries.SelectedValue;
+                var genreNameOrIdAsString = this.DropDownListGenres.SelectedIndex != 0 ?
                     this.DropDownListGenres.SelectedValue : this.TextBoxGenre.Text;
 
-                
+                this.RegisterBand(sender, new AddBandEventArgs()
+                {
+                    BandName = bandName,
+                    Year = yearOfFormation,
+                    Country = countryOfOriginId,
+                    Genre = genreNameOrIdAsString
+                });
+
+                if (this.Model.IsSuccessful)
+                {
+                    this.SuccessLabel.Text = "Bravo, tiger! You just registered that band!";
+
+                    this.Response.Redirect("../browse/all");
+                }
             }
         }
 
@@ -47,7 +75,7 @@ namespace MusicLibrary.Web.add
             {
                 this.GenreDropDownWrapper.Visible = false;
                 this.GenreTextBoxWrapper.Visible = true;
-                this.DropDownListGenres.SelectedIndex = -1;
+                this.DropDownListGenres.SelectedIndex = 0;
                 Page.ClientScript.RegisterClientScriptInclude("customValidations", "client-custom-validations.js");
             }
             else
@@ -65,7 +93,14 @@ namespace MusicLibrary.Web.add
             {
                 var genre = args.Value;
 
-                if (genre.Length < 2 && genre.Length > 15)
+                if (genre.Length < 2 && genre.Length > 30)
+                {
+                    args.IsValid = false;
+                    return;
+                }
+
+                Regex rgx = new Regex(@"^[{(]?[0-9A-F]{8}[-]?([0-9A-F]{4}[-]?){3}[0-9A-F]{12}[)}]?$/i");
+                if (rgx.IsMatch(genre))
                 {
                     args.IsValid = false;
                     return;
@@ -78,6 +113,24 @@ namespace MusicLibrary.Web.add
             {
                 args.IsValid = false;
             }
+        }
+
+        protected void OnDataBound(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                this.ListBoxCountries.Items.Insert(0, new ListItem("Select a country", ""));
+                this.DropDownListGenres.Items.Insert(0, new ListItem("Select a genre", ""));
+            }
+        }
+
+        protected void ButtonCancel_Click(object sender, EventArgs e)
+        {
+            this.TextBoxBandName.Text = string.Empty;
+            this.TextBoxYear.Text = string.Empty;
+            this.TextBoxGenre.Text = string.Empty;
+            this.DropDownListGenres.SelectedIndex = 0;
+            this.ListBoxCountries.SelectedIndex = 0;
         }
     }
 }

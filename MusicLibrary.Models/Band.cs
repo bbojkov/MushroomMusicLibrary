@@ -1,10 +1,11 @@
-﻿using System;
+﻿using MusicLibrary.Models.Contracts;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MusicLibrary.Models
 {
-    public class Band
+    public class Band : IBand
     {
         public Band()
         {
@@ -22,7 +23,6 @@ namespace MusicLibrary.Models
         public Guid GenreId { get; set; }
 
         public virtual Genre Genre { get; set; }
-
 
         public virtual ICollection<User> UserLikes { get; set; }
     }

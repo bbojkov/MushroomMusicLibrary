@@ -10,5 +10,7 @@ namespace MusicLibrary.Services
     public interface IGenreService
     {
         IEnumerable<Genre> GetAllGenres();
+        Genre GetGenre(Guid genreId);
+        Genre CreateGenre(string genreName);
     }
 }

@@ -1,5 +1,6 @@
 ﻿namespace MusicLibrary.MVP.Views
 {
+    using EventArguments;
     using Models;
     using System;
     using System.Collections.Generic;
@@ -12,6 +13,6 @@
     {
         event EventHandler NeedGenres;
         event EventHandler NeedCountries;
-
+        event EventHandler<AddBandEventArgs> RegisterBand;
     }
 }
