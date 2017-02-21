@@ -101,6 +101,8 @@
     <Compile Include="Services\BandServiceTests\GetBands_ByLetter_Should.cs" />
     <Compile Include="Services\BandServiceTests\GetById_Should.cs" />
     <Compile Include="Services\BandServiceTests\RegisterNewBand_Should.cs" />
+    <Compile Include="Services\CountryServiceTests\GetById_Should.cs" />
+    <Compile Include="Services\CountryServiceTests\GetCountries_Should.cs" />
     <Compile Include="Services\GenreServiceTests\GetAllGenres_Should.cs" />
     <Compile Include="Mocks\QueryableDbSetMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -26,7 +26,7 @@
             return this.musicLibraryContext.Countries.OrderBy(x => x.CountryName).ToList();
         }
 
-        public Country GetCountry(Guid countryId)
+        public Country GetById(Guid countryId)
         {
             return this.musicLibraryContext.Countries.Find(countryId);
         }

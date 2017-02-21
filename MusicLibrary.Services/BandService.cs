@@ -82,7 +82,7 @@ namespace MusicLibrary.Services
             newBand.Id = Guid.NewGuid();
             newBand.BandName = bandName;
 
-            var country = this.countryService.GetCountry(countryId);
+            var country = this.countryService.GetById(countryId);
             if (country == null)
             {
                 //return isSuccessful;
