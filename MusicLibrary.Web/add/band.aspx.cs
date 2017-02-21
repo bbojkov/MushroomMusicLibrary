@@ -46,18 +46,19 @@ namespace MusicLibrary.Web.add
             this.Page.Validate("AddNewBand");
             if (this.Page.IsValid)
             {
-                var bandName = this.TextBoxBandName.Text;
-                var yearOfFormation = int.Parse(this.TextBoxYear.Text);
-                var countryOfOriginId = this.ListBoxCountries.SelectedValue;
-                var genreNameOrIdAsString = this.DropDownListGenres.SelectedIndex != 0 ?
-                    this.DropDownListGenres.SelectedValue : this.TextBoxGenre.Text;
+                string bandName = this.TextBoxBandName.Text;
+                string formationYearAsString = this.TextBoxYear.Text;
+                string originCountryIdAsString = this.ListBoxCountries.SelectedValue;
+                string genreName = this.TextBoxGenre.Text;
+                string genreIdAsString = this.DropDownListGenres.SelectedValue;
 
                 this.RegisterBand(sender, new AddBandEventArgs()
                 {
-                    BandName = bandName,
-                    Year = yearOfFormation,
-                    Country = countryOfOriginId,
-                    Genre = genreNameOrIdAsString
+                    BandNameString = bandName,
+                    YearString = formationYearAsString,
+                    CountryIdString = originCountryIdAsString,
+                    GenreIdString = genreIdAsString,
+                    GenreNameString = genreName
                 });
 
                 if (this.Model.IsSuccessful)

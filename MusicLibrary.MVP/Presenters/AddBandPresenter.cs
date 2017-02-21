@@ -39,7 +39,18 @@
 
         private void View_RegisterBand(object sender, EventArguments.AddBandEventArgs e)
         {
-            bool isSuccessful = this.bandService.RegisterNewBand(e.BandName, e.Year, e.Genre, e.Country);
+            string bandName = e.BandNameString;
+            int formationYear = int.Parse(e.YearString);
+            Guid countryId = Guid.Parse(e.CountryIdString);
+
+            Guid genreId;
+            if (!Guid.TryParse(e.GenreIdString, out genreId))
+            {
+                // Register genre
+                genreId = this.genreService.CreateGenre(e.GenreNameString).Id;
+            }
+
+            bool isSuccessful = this.bandService.RegisterNewBand(bandName, formationYear, genreId, countryId);
 
             this.View.Model.IsSuccessful = isSuccessful;
         }

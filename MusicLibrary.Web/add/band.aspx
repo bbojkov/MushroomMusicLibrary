@@ -105,7 +105,8 @@
                         DataTextField="CountryName"
                         DataValueField="Id"
                         AppendDataBoundItems="false"
-                        CssClass="form-control"></asp:ListBox>
+                        CssClass="form-control">
+                    </asp:ListBox>
                     <asp:RequiredFieldValidator runat="server"
                         ID="RequiredFieldCountries"
                         Text="*"
