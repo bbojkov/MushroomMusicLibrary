@@ -66,13 +66,17 @@
                 </a>
 
                 <div class="col-md-3 bottom-four">
-                    <div class="bottom-text">
-                        <h4>SEARCH</h4>
-                        <p>
-                            <asp:TextBox runat="server"></asp:TextBox>
-                        </p>
-                    </div>
+                    <asp:Panel runat="server" DefaultButton="LinkButtonSearch" CssClass="row" Height="145.5px">
+                        <div class="bottom-text">
+                            <h3>Search</h3>
+                            <p>
+                                <asp:TextBox runat="server" ID="TextBoxSearchParam" placeholder="Type band name" type="text" name="q" Height="32px"></asp:TextBox>
+                                <asp:LinkButton runat="server" ID="LinkButtonSearch" OnClick="LinkButtonSearch_Click" CssClass="btn btn-info" Text="Go!"></asp:LinkButton>
+                            </p>
+                        </div>
+                    </asp:Panel>
                 </div>
+
                 <div class="clearfix"></div>
             </div>
         </div>
@@ -162,12 +166,12 @@
     <!-- smooth scrolling -->
     <script type="text/javascript">
         $(document).ready(function () {
-                var defaults = {
+            var defaults = {
                 containerID: 'toTop', // fading element id
                 containerHoverID: 'toTopHover', // fading element hover id
                 scrollSpeed: 1200,
-                easingType: 'linear' 
-                };
+                easingType: 'linear'
+            };
             $().UItoTop({ easingType: 'easeOutQuart' });
         });
     </script>

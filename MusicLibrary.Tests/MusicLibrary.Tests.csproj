@@ -65,6 +65,10 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="WebFormsMvp, Version=1.4.5.0, Culture=neutral, PublicKeyToken=537f18701145dff0, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebFormsMvp.1.4.5.0\lib\WebFormsMvp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -83,6 +87,9 @@
     <Compile Include="Models\CountryModel_Should.cs" />
     <Compile Include="Models\GenreModel_Should.cs" />
     <Compile Include="Models\UserModel_Should.cs" />
+    <Compile Include="MVP\BandListPresenterTests\Constructor_Should.cs" />
+    <Compile Include="MVP\BandListPresenterTests\View_LoadAllBands_Should.cs" />
+    <Compile Include="MVP\BandListPresenterTests\View_LoadBands_Should.cs" />
     <Compile Include="Services\BandServiceTests\GetAllBands_Should.cs" />
     <Compile Include="Services\BandServiceTests\GetBandsByGenre_Should.cs" />
     <Compile Include="Services\BandServiceTests\GetBands_ByLetter_Should.cs" />
@@ -105,6 +112,10 @@
     <ProjectReference Include="..\MusicLibrary.Models\MusicLibrary.Models.csproj">
       <Project>{0768BE4D-54C1-40C6-9687-76C221AC91B9}</Project>
       <Name>MusicLibrary.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MusicLibrary.MVP\MusicLibrary.MVP.csproj">
+      <Project>{FBB8F0FA-A2E1-4A02-8EA9-7272E011032B}</Project>
+      <Name>MusicLibrary.MVP</Name>
     </ProjectReference>
     <ProjectReference Include="..\MusicLibrary.Services\MusicLibrary.Services.csproj">
       <Project>{96804F75-73C0-4921-8CEA-EC1F02D36259}</Project>

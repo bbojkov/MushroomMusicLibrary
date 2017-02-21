@@ -1,42 +1,15 @@
-﻿using System.Web.UI;
+﻿using System;
+using System.Web.UI;
 
 namespace Project.Web
 {
     public partial class _Default : Page
     {
-
+        protected void LinkButtonSearch_Click(object sender, EventArgs e)
+        {
+            string textToSearchFor = this.TextBoxSearchParam.Text;
+            string queryParam = string.IsNullOrEmpty(textToSearchFor) ? string.Empty : string.Format("?q={0}", textToSearchFor);
+            Response.Redirect("~/search" + queryParam);
+        }
     }
-
-    //[PresenterBinding(typeof(BandListPresenter))]
-    //public partial class _Default : MvpPage<BandListModel>, IBandListView
-    //{
-    //    public event EventHandler<BandListEventArgs> LoadBands;
-    //    public event EventHandler LoadAllBands;
-
-    //    protected void Page_PreRender(object sender, EventArgs e)
-    //    {
-    //        this.RepeaterAlphabet.DataSource = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
-    //        this.RepeaterAlphabet.DataBind();
-    //    }
-
-    //    protected void RepeaterAlphabet_ItemCommand(object source, RepeaterCommandEventArgs e)
-    //    {
-    //        var letter = e.CommandName;
-
-    //        if (LoadBands != null)
-    //        {
-    //            this.LoadBands(this, new BandListEventArgs { Letter = letter });
-    //        }
-
-
-    //        this.BandGridView.DataSource = this.Model.Bands;
-    //        this.BandGridView.DataBind();
-    //    }
-
-    //    public IEnumerable<Band> ListViewCategories_GetData()
-    //    {
-    //        this.LoadAllBands?.Invoke(this, null);
-
-    //        return this.Model.Bands;
-    //    }
 }
