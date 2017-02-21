@@ -40,6 +40,8 @@ namespace MusicLibrary.Data.Migrations
                     Venezuela;Virgin Islands (British);Virgin Islands (U.S.);Vietnam;Vanuatu;Wallis and Futuna Islands;Samoa;Yemen;Mayotte;South Africa;Zambia;Zimbabwe"
                     .Split(new char[] { ';' });
 
+            var genresAsString = @"Blues;Brass & Military;Children's;Classical;Electronic;Folk, World & Country;Funk/Soul;Hip-Hop;Jazz;Latin;Non-Music;Pop;Reggae;Rock;Metal;Stage & Screen".Split(new char[] { ';' });
+
             IList<Country> countries = new List<Country>();
 
             for (int i = 0; i < countriesAsString.Length; i++)
@@ -49,21 +51,23 @@ namespace MusicLibrary.Data.Migrations
             context.Countries.AddOrUpdate(countries.ToArray());
 
 
-            IList<Genre> genres = new List<Genre>()
+            IList<Genre> genres = new List<Genre>();
+
+            for (int i = 0; i < genresAsString.Length; i++)
             {
-                new Genre() { Id = Guid.NewGuid(), GenreName = "Metal" },
-                new Genre() { Id = Guid.NewGuid(), GenreName = "Grindcore" },
-                new Genre() { Id = Guid.NewGuid(), GenreName = "Pop" }
-            };
+                genres.Add(new Genre() { Id = Guid.NewGuid(), GenreName = genresAsString[i].Trim() });
+            }
+
+            context.Genres.AddOrUpdate(genres.ToArray());
 
 
             IList<Band> bands = new List<Band>()
             {
-                new Band() {Id = Guid.NewGuid(), BandName = "A day to remember", Country = countries[0], Genre = genres[0] },
+                new Band() {Id = Guid.NewGuid(), BandName = "A day to remember", Country = countries[0], Genre = genres[3] },
                 new Band() {Id = Guid.NewGuid(), BandName = "Aerosmith", Country = countries[0], Genre = genres[1] },
                 new Band() {Id = Guid.NewGuid(), BandName = "Behemoth", Country = countries[33], Genre = genres[0] },
                 new Band() {Id = Guid.NewGuid(), BandName = "Demon Hunter", Country = countries[6], Genre = genres[2] },
-                new Band() {Id = Guid.NewGuid(), BandName = "Faith No More", Country = countries[6], Genre = genres[0] },
+                new Band() {Id = Guid.NewGuid(), BandName = "Faith No More", Country = countries[6], Genre = genres[5] },
             };
 
             context.Bands.AddOrUpdate(bands.ToArray());

@@ -9,18 +9,20 @@
                     <%: Title %>
                 </h1>
                 <div class="container">
-                    <ul class="list-group">
-                        <li class="list-group-item list-group-item-info">Band Name: <%#: Item.BandName %></li>
-                        <li class="list-group-item list-group-item-info">Country of Origin: <%#: Item.Country.CountryName %></li>
-                        <li class="list-group-item list-group-item-info">Genre: <%#: Item.Genre.GenreName %></li>
-                        <li class="list-group-item list-group-item-success">Description: </li>
-                        <asp:Button
-                            ID="AddToFavorites"
-                            runat="server"
-                            Text="Add to favorites"
-                            OnClick="AddToFavorites_Click"
-                            CssClass="btn btn-success" />
-                    </ul>
+                    <div class="col-md-12 well table-responsive table-bordered text-center">
+                        <ul class="list-group">
+                            <li class="list-group-item list-group-item-info">Band Name: <%#: Item.BandName %></li>
+                            <li class="list-group-item list-group-item-info">Country of Origin: <%#: Item.Country.CountryName %></li>
+                            <li class="list-group-item list-group-item-info">Genre: <%#: Item.Genre.GenreName %></li>
+                            <li class="list-group-item list-group-item-success">Description: </li>
+                            <asp:Button
+                                ID="AddToFavorites"
+                                runat="server"
+                                Text="Add to favorites"
+                                OnClick="AddToFavorites_Click"
+                                CssClass="btn btn-success" />
+                    </div>
+                </ul>
             </header>
         </ItemTemplate>
     </asp:FormView>

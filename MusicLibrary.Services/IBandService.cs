@@ -14,6 +14,9 @@ namespace MusicLibrary.Services
 
         IEnumerable<Band> GetBandsByGenre(string genre);
 
+      
         bool RegisterNewBand(string bandName, int formationYear, Guid genreId, Guid countryId);
+
+        IEnumerable<Band> SearchBandsByBandName(string searchTerm);
     }
 }

@@ -104,5 +104,13 @@ namespace MusicLibrary.Services
             isSuccessful = true;
             return isSuccessful;
         }
+
+        public IEnumerable<Band> SearchBandsByBandName(string searchTerm)
+        {
+            return
+                string.IsNullOrEmpty(searchTerm)
+                ? this.libraryContext.Bands
+                : this.libraryContext.Bands.Where(x => x.BandName.Contains(searchTerm));
+        }
     }
 }
