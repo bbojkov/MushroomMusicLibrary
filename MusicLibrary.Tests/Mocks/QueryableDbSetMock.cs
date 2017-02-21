@@ -25,12 +25,6 @@ namespace MusicLibrary.Tests.Mocks
             dbSet.As<IQueryable<T>>().Setup(m => m.ElementType).Returns(queryable.ElementType);
             dbSet.As<IQueryable<T>>().Setup(m => m.GetEnumerator()).Returns(queryable.GetEnumerator());
 
-            dbSet.Setup(x => x.Add(It.IsAny<T>())).Returns((T entity) =>
-            {
-                sourceList.Add(entity);
-                return entity;
-            });
-
             return dbSet.Object;
         }
     }

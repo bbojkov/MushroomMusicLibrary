@@ -31,7 +31,7 @@
             var userServiceMock = new Mock<IUserService>();
             var bandFactoryMock = new Mock<IBandFactory>();
 
-            countryServiceMock.Setup(x => x.GetCountry(It.Is<Guid>(g => g == countryData.Id))).Returns(countryData);
+            countryServiceMock.Setup(x => x.GetById(It.Is<Guid>(g => g == countryData.Id))).Returns(countryData);
             genreServiceMock.Setup(x => x.GetGenre(It.Is<Guid>(g => g == genreData.Id))).Returns(genreData);
             bandFactoryMock.Setup(x => x.CreateBandInstance()).Returns(band);
 
@@ -75,7 +75,7 @@
             var userServiceMock = new Mock<IUserService>();
             var bandFactoryMock = new Mock<IBandFactory>();
 
-            countryServiceMock.Setup(x => x.GetCountry(It.Is<Guid>(g => g == countryData.Id))).Returns(countryData);
+            countryServiceMock.Setup(x => x.GetById(It.Is<Guid>(g => g == countryData.Id))).Returns(countryData);
             genreServiceMock.Setup(x => x.GetGenre(It.Is<Guid>(g => g == genreData.Id))).Returns(genreData);
             bandFactoryMock.Setup(x => x.CreateBandInstance()).Returns(band);
 
@@ -119,7 +119,7 @@
             var userServiceMock = new Mock<IUserService>();
             var bandFactoryMock = new Mock<IBandFactory>();
 
-            countryServiceMock.Setup(x => x.GetCountry(It.Is<Guid>(g => g == countryData.Id))).Returns(countryData);
+            countryServiceMock.Setup(x => x.GetById(It.Is<Guid>(g => g == countryData.Id))).Returns(countryData);
             genreServiceMock.Setup(x => x.GetGenre(It.Is<Guid>(g => g == genreData.Id))).Returns(genreData);
             bandFactoryMock.Setup(x => x.CreateBandInstance()).Returns(band);
 
@@ -158,7 +158,7 @@
             var userServiceMock = new Mock<IUserService>();
             var bandFactoryMock = new Mock<IBandFactory>();
 
-            countryServiceMock.Setup(x => x.GetCountry(It.Is<Guid>(g => g == countryData.Id))).Returns(countryData);
+            countryServiceMock.Setup(x => x.GetById(It.Is<Guid>(g => g == countryData.Id))).Returns(countryData);
             genreServiceMock.Setup(x => x.GetGenre(It.Is<Guid>(g => g == genreData.Id))).Returns(genreData);
             bandFactoryMock.Setup(x => x.CreateBandInstance()).Returns(band);
 
@@ -200,7 +200,7 @@
             var userServiceMock = new Mock<IUserService>();
             var bandFactoryMock = new Mock<IBandFactory>();
 
-            countryServiceMock.Setup(x => x.GetCountry(It.Is<Guid>(g => g == countryData.Id))).Returns(countryData);
+            countryServiceMock.Setup(x => x.GetById(It.Is<Guid>(g => g == countryData.Id))).Returns(countryData);
             genreServiceMock.Setup(x => x.GetGenre(It.Is<Guid>(g => g == genreData.Id))).Returns(genreData);
             bandFactoryMock.Setup(x => x.CreateBandInstance()).Returns(band);
 
@@ -239,7 +239,7 @@
             var userServiceMock = new Mock<IUserService>();
             var bandFactoryMock = new Mock<IBandFactory>();
 
-            countryServiceMock.Setup(x => x.GetCountry(It.Is<Guid>(g => g == countryData.Id))).Returns(countryData);
+            countryServiceMock.Setup(x => x.GetById(It.Is<Guid>(g => g == countryData.Id))).Returns(countryData);
             genreServiceMock.Setup(x => x.GetGenre(It.Is<Guid>(g => g == genreData.Id))).Returns(genreData);
             bandFactoryMock.Setup(x => x.CreateBandInstance()).Returns(band);
 
