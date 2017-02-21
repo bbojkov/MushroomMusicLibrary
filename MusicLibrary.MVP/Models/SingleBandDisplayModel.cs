@@ -9,8 +9,6 @@ namespace MusicLibrary.MVP.Models
 {
     public class SingleBandDisplayModel
     {
-        public Band Band { get; set; }
-
-        public bool SaveButtonVisible { get; set; }
+        public Band Band { get; set; }  
     }
 }

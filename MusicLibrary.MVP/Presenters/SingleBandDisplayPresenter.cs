@@ -2,10 +2,6 @@
 using MusicLibrary.MVP.Views;
 using MusicLibrary.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WebFormsMvp;
 
 namespace MusicLibrary.MVP.Presenters
@@ -24,6 +20,11 @@ namespace MusicLibrary.MVP.Presenters
                 throw new ArgumentNullException(nameof(userService));
             }
 
+            if (bandService == null)
+            {
+                throw new ArgumentNullException(nameof(bandService));
+            }
+
             this.userService = userService;
             this.bandService = bandService;
 
@@ -39,8 +40,16 @@ namespace MusicLibrary.MVP.Presenters
 
         private void View_OnFormGetBand(object sender, SingleBandEventArgs e)
         {
-            this.View.Model.Band = this.bandService.GetById(e.BandId);
-            this.View.Model.SaveButtonVisible = false;
+            var bandId = e.BandId;
+
+            if (bandId != Guid.Empty)
+            {
+                this.View.Model.Band = this.bandService.GetById(bandId);
+            }
+            else
+            {
+                this.View.Model.Band = null;
+            }
         }
     }
 }

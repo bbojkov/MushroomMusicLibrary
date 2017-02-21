@@ -15,6 +15,16 @@ namespace MusicLibrary.MVP.Presenters
         public BandsByGenreDisplayPresenter(IBandsByGenreDisplayView view, IGenreService genreService, IBandService bandService) 
             : base(view)
         {
+            if (genreService == null)
+            {
+                throw new ArgumentNullException(nameof(genreService));
+            }
+
+            if (bandService == null)
+            {
+                throw new ArgumentNullException(nameof(bandService));
+            }
+
             this.genreService = genreService;
             this.bandService = bandService;
 

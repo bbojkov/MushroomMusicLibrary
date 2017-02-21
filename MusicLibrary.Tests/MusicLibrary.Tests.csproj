@@ -90,6 +90,12 @@
     <Compile Include="MVP\BandListPresenterTests\Constructor_Should.cs" />
     <Compile Include="MVP\BandListPresenterTests\View_LoadAllBands_Should.cs" />
     <Compile Include="MVP\BandListPresenterTests\View_LoadBands_Should.cs" />
+    <Compile Include="MVP\BandsByGenreDisplayPresenterTests\Constructor_Should.cs" />
+    <Compile Include="MVP\BandsByGenreDisplayPresenterTests\View_LoadBandsByGenre_Should.cs" />
+    <Compile Include="MVP\BandsByGenreDisplayPresenterTests\View_LoadGenres_Should.cs" />
+    <Compile Include="MVP\SingleBandDisplayPresenterTests\Constructor_Should.cs" />
+    <Compile Include="MVP\SingleBandDisplayPresenterTests\View_AddToFavorites_Should.cs" />
+    <Compile Include="MVP\SingleBandDisplayPresenterTests\View_OnFormGetBand_Should.cs" />
     <Compile Include="Services\BandServiceTests\GetAllBands_Should.cs" />
     <Compile Include="Services\BandServiceTests\GetBandsByGenre_Should.cs" />
     <Compile Include="Services\BandServiceTests\GetBands_ByLetter_Should.cs" />
