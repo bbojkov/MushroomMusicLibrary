@@ -21,20 +21,6 @@ namespace MusicLibrary.Web.browse
             this.RepeaterAlphabet.DataBind();
         }
 
-        //protected void RepeaterAlphabet_ItemCommand(object source, RepeaterCommandEventArgs e)
-        //{
-        //    var letter = e.CommandName;
-
-        //    if (LoadBands != null)
-        //    {
-        //        this.LoadBands(this, new BandListEventArgs { Letter = letter });
-        //    }
-
-
-        //    this.BandGridView.DataSource = this.Model.Bands;
-        //    this.BandGridView.DataBind();
-        //}
-
         protected void LinkLetterButton_Command(object sender, CommandEventArgs e)
         {
             var letter = e.CommandName;

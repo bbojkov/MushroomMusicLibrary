@@ -7,27 +7,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Project.Web {
+namespace MusicLibrary.Web {
     
     
-    public partial class _Default {
+    public partial class search {
         
         /// <summary>
-        /// TextBoxSearchParam control.
+        /// LiteralSearchQuery control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxSearchParam;
+        protected global::System.Web.UI.WebControls.Literal LiteralSearchQuery;
         
         /// <summary>
-        /// LinkButtonSearch control.
+        /// Repeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButtonSearch;
+        protected global::System.Web.UI.WebControls.Repeater Repeater;
     }
 }

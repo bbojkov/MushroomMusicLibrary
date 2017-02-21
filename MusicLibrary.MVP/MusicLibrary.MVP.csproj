@@ -47,25 +47,33 @@
     <Compile Include="EventArguments\AddBandEventArgs.cs" />
     <Compile Include="EventArguments\BandByGenreEventArgs.cs" />
     <Compile Include="EventArguments\BandListEventArgs.cs" />
+    <Compile Include="EventArguments\SearchDisplayEventArgs.cs" />
     <Compile Include="EventArguments\SingleBandEventArgs.cs" />
     <Compile Include="Models\AddBandModel.cs" />
     <Compile Include="Models\BandListModel.cs" />
     <Compile Include="Models\BandsByGenreDisplayModel.cs" />
+    <Compile Include="Models\SearchDisplayModel.cs" />
     <Compile Include="Models\SingleBandDisplayModel.cs" />
     <Compile Include="Presenters\AddBandPresenter.cs" />
     <Compile Include="Presenters\BandListPresenter.cs" />
     <Compile Include="Presenters\BandsByGenreDisplayPresenter.cs" />
+    <Compile Include="Presenters\SearchDisplayPresenter.cs" />
     <Compile Include="Presenters\SingleBandDisplayPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\IAddBandView.cs" />
     <Compile Include="Views\IBandListView.cs" />
     <Compile Include="Views\IBandsByGenreDisplayView.cs" />
+    <Compile Include="Views\ISearchDisplayView.cs" />
     <Compile Include="Views\ISingleBandDisplayView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MusicLibrary.Data\MusicLibrary.Data.csproj">
+      <Project>{049355E6-5343-4FCE-8556-388DC2262DCC}</Project>
+      <Name>MusicLibrary.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MusicLibrary.Models\MusicLibrary.Models.csproj">
       <Project>{0768BE4D-54C1-40C6-9687-76C221AC91B9}</Project>
       <Name>MusicLibrary.Models</Name>

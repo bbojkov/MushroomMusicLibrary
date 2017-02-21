@@ -109,7 +109,7 @@ namespace MusicLibrary.Services
         {
             return
                 string.IsNullOrEmpty(searchTerm)
-                ? this.libraryContext.Bands
+                ? null
                 : this.libraryContext.Bands.Where(x => x.BandName.Contains(searchTerm));
         }
     }
