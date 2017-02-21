@@ -12,10 +12,10 @@ namespace MusicLibrary.Tests.Mocks
     {
         public static IDbSet<T> GetQueryableMockDbSet<T>(IEnumerable<T> sourceList) where T : class
         {
-            return GetQueryableMockDbSetFromArray(sourceList.ToArray());
+            return GetQueryableMockDbSetFromArray(sourceList.ToList());
         }
 
-        public static IDbSet<T> GetQueryableMockDbSetFromArray<T>(params T[] sourceList) where T : class
+        public static IDbSet<T> GetQueryableMockDbSetFromArray<T>(IList<T> sourceList) where T : class
         {
             var queryable = sourceList.AsQueryable();
 
@@ -24,6 +24,12 @@ namespace MusicLibrary.Tests.Mocks
             dbSet.As<IQueryable<T>>().Setup(m => m.Expression).Returns(queryable.Expression);
             dbSet.As<IQueryable<T>>().Setup(m => m.ElementType).Returns(queryable.ElementType);
             dbSet.As<IQueryable<T>>().Setup(m => m.GetEnumerator()).Returns(queryable.GetEnumerator());
+
+            dbSet.Setup(x => x.Add(It.IsAny<T>())).Returns((T entity) =>
+            {
+                sourceList.Add(entity);
+                return entity;
+            });
 
             return dbSet.Object;
         }

@@ -68,55 +68,41 @@ namespace MusicLibrary.Services
             return this.libraryContext.Bands.Find(id);
         }
 
-        public bool RegisterNewBand(string bandName, int year, string genreNameOrIdAsString, string countryIdAsString)
+        public bool RegisterNewBand(string bandName, int formationYear, Guid genreId, Guid countryId)
         {
-            bool isSuucessful = false;
+            bool isSuccessful = false;
             if (string.IsNullOrEmpty(bandName))
             {
-                return isSuucessful;
+                //return isSuucessful;
                 throw new ArgumentNullException(nameof(bandName));
             }
 
-            if (string.IsNullOrEmpty(genreNameOrIdAsString))
-            {
-                return isSuucessful;
-                throw new ArgumentNullException(nameof(genreNameOrIdAsString));
-            }
-
-            if (string.IsNullOrEmpty(countryIdAsString))
-            {
-                return isSuucessful;
-                throw new ArgumentNullException(nameof(countryIdAsString));
-            }
-
             var newBand = this.bandFactory.CreateBandInstance();
+
             newBand.Id = Guid.NewGuid();
             newBand.BandName = bandName;
 
-            var country = this.countryService.GetCountry(Guid.Parse(countryIdAsString));
+            var country = this.countryService.GetCountry(countryId);
             if (country == null)
             {
-                return isSuucessful;
+                //return isSuccessful;
                 throw new ArgumentNullException(nameof(country));
             }
             newBand.Country = country;
 
-            Genre genre;
-            Guid genreId;
-            if (Guid.TryParse(genreNameOrIdAsString, out genreId))
+            var genre = this.genreService.GetGenre(genreId);
+            if (genre == null)
             {
-                genre = this.genreService.GetGenre(genreId);
-            }
-            else
-            {
-                genre = this.genreService.CreateGenre(genreNameOrIdAsString);
+                //return isSuccessful;
+                throw new ArgumentNullException(nameof(genre));
             }
             newBand.Genre = genre;
 
             this.libraryContext.Bands.Add(newBand);
             this.baseContext.SaveChanges();
 
-            return isSuucessful = true;
+            isSuccessful = true;
+            return isSuccessful;
         }
 
         public IEnumerable<Band> SearchBandsByBandName(string searchTerm)
