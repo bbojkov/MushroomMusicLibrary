@@ -87,6 +87,10 @@
     <Compile Include="Models\CountryModel_Should.cs" />
     <Compile Include="Models\GenreModel_Should.cs" />
     <Compile Include="Models\UserModel_Should.cs" />
+    <Compile Include="MVP\AddBandPresenterTests\Constructor_Should.cs" />
+    <Compile Include="MVP\AddBandPresenterTests\View_NeedGenres_Should.cs" />
+    <Compile Include="MVP\AddBandPresenterTests\View_NeedCountries_Should.cs" />
+    <Compile Include="MVP\AddBandPresenterTests\View_RegisterBand_Should.cs" />
     <Compile Include="MVP\BandListPresenterTests\Constructor_Should.cs" />
     <Compile Include="MVP\BandListPresenterTests\View_LoadAllBands_Should.cs" />
     <Compile Include="MVP\BandListPresenterTests\View_LoadBands_Should.cs" />

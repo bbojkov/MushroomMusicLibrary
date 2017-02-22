@@ -32,7 +32,7 @@
             this.countryService = countryService;
             this.bandService = bandService;
 
-            this.View.NeedGenres += View_LoadGenres;
+            this.View.NeedGenres += View_NeedGenres;
             this.View.NeedCountries += View_NeedCountries;
             this.View.RegisterBand += View_RegisterBand;
         }
@@ -40,14 +40,26 @@
         private void View_RegisterBand(object sender, EventArguments.AddBandEventArgs e)
         {
             string bandName = e.BandNameString;
-            int formationYear = int.Parse(e.YearString);
-            Guid countryId = Guid.Parse(e.CountryIdString);
+
+            int formationYear;
+            if (!int.TryParse(e.YearString, out formationYear))
+            {
+                throw new ArgumentException(nameof(formationYear));
+            }
+
+            Guid countryId;
+            if (!Guid.TryParse(e.CountryIdString, out countryId))
+            {
+                throw new ArgumentException(nameof(countryId));
+            }
+
 
             Guid genreId;
             if (!Guid.TryParse(e.GenreIdString, out genreId))
             {
                 // Register genre
                 genreId = this.genreService.CreateGenre(e.GenreNameString).Id;
+
             }
 
             bool isSuccessful = this.bandService.RegisterNewBand(bandName, formationYear, genreId, countryId);
@@ -60,7 +72,7 @@
             this.View.Model.Countries = this.countryService.GetCountries();
         }
 
-        private void View_LoadGenres(object sender, EventArgs e)
+        private void View_NeedGenres(object sender, EventArgs e)
         {
             this.View.Model.Genres = this.genreService.GetAllGenres();
         }
