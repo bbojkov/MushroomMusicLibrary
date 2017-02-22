@@ -97,6 +97,8 @@
     <Compile Include="MVP\BandsByGenreDisplayPresenterTests\Constructor_Should.cs" />
     <Compile Include="MVP\BandsByGenreDisplayPresenterTests\View_LoadBandsByGenre_Should.cs" />
     <Compile Include="MVP\BandsByGenreDisplayPresenterTests\View_LoadGenres_Should.cs" />
+    <Compile Include="MVP\SearchDisplayPresenterTests\Constructor_Should.cs" />
+    <Compile Include="MVP\SearchDisplayPresenterTests\View_OnSearchDisplayBands_Should.cs" />
     <Compile Include="MVP\SingleBandDisplayPresenterTests\Constructor_Should.cs" />
     <Compile Include="MVP\SingleBandDisplayPresenterTests\View_AddToFavorites_Should.cs" />
     <Compile Include="MVP\SingleBandDisplayPresenterTests\View_OnFormGetBand_Should.cs" />
