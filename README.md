@@ -26,6 +26,9 @@ What technology are we using ?
 ASP.NET Web-Forms
 - Framework - .NET
 - Database: MS SQL
+- Dependecy Injector - Ninject
+- Additional libraries - WebFormsMvp
+- Testing: NUnit, Moq
 - The Project uses MVP pattern
 
     Additional information
