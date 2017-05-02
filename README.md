@@ -1,4 +1,4 @@
-# Course Project for Web Applications with Node.js
+# Course Project for Web Applications with ASP.NET WebForms
 
 **[Link To The Full Project Description](https://github.com/TelerikAcademy/ASP.NET-Web-Forms/blob/master/Teamwork/README.md)**
 
